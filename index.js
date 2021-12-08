@@ -1,4 +1,3 @@
-const deasync = require('deasync');
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
 const { types } = require('sass');
@@ -6,10 +5,7 @@ const parse = require('htmlparser2').parseDOM;
 const { selectAll, selectOne } = require('css-select');
 const serialize = require('dom-serializer').default;
 const svgToDataUri = require('mini-svg-data-uri');
-const SVGO = require('svgo');
-
-const svgo = new SVGO();
-const optimize = deasync(optimizeAsync);
+const svgo = require('svgo');
 
 const defaultOptions = {
   encodingFormat: 'base64',
@@ -39,7 +35,7 @@ module.exports = function inliner(base, opts) {
       }
 
       if (options.optimize) {
-        content = Buffer.from(optimize(content).data, 'utf8');
+        content = Buffer.from(svgo.optimize(content).data, 'utf8');
       }
 
       return encode(content, options.encodingFormat);
@@ -131,16 +127,4 @@ function mapToObj(map) {
   }
 
   return obj;
-}
-
-/**
- *
- * @param {*} src
- * @param {*} cb
- */
-function optimizeAsync(src, cb) {
-  svgo
-    .optimize(src)
-    .then((result) => cb(null, result))
-    .catch((error) => cb(error));
 }

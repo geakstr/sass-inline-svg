@@ -66,7 +66,7 @@ describe('test svg inliner', function () {
         }
 
         const expectedResult = Buffer.from(
-          '<svg height="210" width="400"><path fill="rgb(0,0,0)" d="M150 0L75 200h150z"/></svg>\n',
+          '<svg height="210" width="400"><path fill="rgb(0,0,0)" d="M150 0 75 200h150Z"/></svg>',
           'utf8'
         ).toString('base64');
 
@@ -92,7 +92,7 @@ describe('test svg inliner', function () {
         }
 
         const expectedResult = Buffer.from(
-          '<svg height="210" width="400"><path fill="rgba(0,0,0,0.5)" d="M150 0L75 200h150z"/></svg>\n',
+          '<svg height="210" width="400"><path fill="rgba(0,0,0,0.5)" d="M150 0 75 200h150Z"/></svg>',
           'utf8'
         ).toString('base64');
 
@@ -120,7 +120,7 @@ describe('test svg inliner', function () {
         }
 
         const expectedResult = Buffer.from(
-          '<svg height="210" width="400"><path fill="red" d="M150 0L75 200h150z"/></svg>',
+          '<svg height="210" width="400"><path fill="red" d="M150 0 75 200h150Z"/></svg>',
           'utf8'
         ).toString('base64');
 
@@ -148,7 +148,7 @@ describe('test svg inliner', function () {
         }
 
         const expectedResult = Buffer.from(
-          '<svg height="210" width="400"><path fill="#FFF" d="M150 0L75 200h150z"/></svg>',
+          '<svg height="210" width="400"><path fill="#FFF" d="M150 0 75 200h150Z"/></svg>',
           'utf8'
         ).toString('base64');
 
